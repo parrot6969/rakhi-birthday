@@ -12,7 +12,6 @@
 
 body{
   margin:0;
-  min-height:100vh;
   font-family:'Poppins',sans-serif;
   background:linear-gradient(135deg,#ffe6f0,#e6f7ff);
   overflow-x:hidden;
@@ -39,7 +38,7 @@ body{
 h1{
   font-family:'Pacifico',cursive;
   color:#ff4d88;
-  font-size:2.8rem;
+  font-size:2.6rem;
 }
 
 .name{
@@ -47,12 +46,6 @@ h1{
   font-size:2.2rem;
   color:#ff4d88;
   margin:10px 0;
-  animation:glow 2s infinite alternate;
-}
-
-@keyframes glow{
-  from{text-shadow:0 0 5px #ff9acb}
-  to{text-shadow:0 0 20px #ff4d88}
 }
 
 .flower-frame{
@@ -92,6 +85,7 @@ h1{
   50%{transform:scale(1.07)}
 }
 
+/* MUSIC */
 .music-btn{
   margin:20px auto 10px;
   width:90px;
@@ -127,6 +121,7 @@ h1{
   color:#666;
 }
 
+/* PHOTO SLIDER */
 .slider{
   display:flex;
   gap:10px;
@@ -144,11 +139,32 @@ h1{
   box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
+/* WISH SLIDES */
+.wishes{
+  margin-top:10px;
+}
+
+.wish-card{
+  min-width:260px;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color:#fff;
+  padding:22px;
+  border-radius:20px;
+  font-size:0.95rem;
+  line-height:1.6;
+  text-align:center;
+  scroll-snap-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* CAKE */
 .cake{
   font-size:4rem;
   cursor:pointer;
+  margin-top:10px;
 }
 
+/* PETALS */
 .petal{
   position:fixed;
   top:-10vh;
@@ -181,12 +197,31 @@ h1{
     <button id="musicBtn" class="music-btn">
       <div class="disc"></div>
     </button>
-    <div class="note">Tap disc to start / pause music 🎶</div>
+    <div class="note">Tap to play / pause music 🎶</div>
 
+    <!-- PHOTO SLIDER -->
     <div class="slider">
       <img src="photo1.jpg">
       <img src="photo2.jpg">
       <img src="photo3.jpg">
+    </div>
+
+    <!-- WISH SLIDER -->
+    <div class="slider wishes">
+      <div class="wish-card">
+        🌸 Dear Rakhi 🌸<br><br>
+        May your life always be filled with happiness, peace, and endless smiles 💖
+      </div>
+
+      <div class="wish-card">
+        ✨ A Bright Future Awaits ✨<br><br>
+        May your dreams come true and success follow you wherever you go 🌟
+      </div>
+
+      <div class="wish-card">
+        💕 Always Believe in Yourself 💕<br><br>
+        You are stronger, kinder, and more amazing than you realize 🌈
+      </div>
     </div>
 
     <div class="cake" onclick="blow()">🎂🕯️🕯️</div>
@@ -205,12 +240,9 @@ let started = false;
 
 btn.addEventListener("click", () => {
   if (!started) {
-    music.play().then(() => {
-      started = true;
-      btn.classList.add("playing");
-    }).catch(() => {
-      alert("Tap again to start music 🎶");
-    });
+    music.play();
+    started = true;
+    btn.classList.add("playing");
   } else {
     if (music.paused) {
       music.play();
@@ -223,7 +255,7 @@ btn.addEventListener("click", () => {
 });
 
 function blow(){
-  document.querySelector(".cake").innerText = "🎂✨";
+  document.querySelector(".cake").innerText="🎂✨";
   alert("Happy Birthday Rakhi 💖");
 }
 
@@ -238,4 +270,3 @@ for(let i=0;i<30;i++){
 
 </body>
 </html>
-
