@@ -13,11 +13,7 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:
-    linear-gradient(180deg, rgba(255,220,235,0.95), rgba(255,182,193,0.95)),
-    url('https://i.imgur.com/8QfYJZy.png');
-  background-size:cover;
-  background-attachment:fixed;
+  background:linear-gradient(180deg,#ffd1dc,#ffb6c1);
   overflow-x:hidden;
 }
 
@@ -52,29 +48,6 @@ h1{
   margin:10px 0;
 }
 
-.flower-frame{
-  position:relative;
-  width:180px;
-  height:180px;
-  margin:15px auto;
-}
-
-.flower-frame::before{
-  content:"🌸 🌸 🌸 🌸 🌸";
-  position:absolute;
-  inset:-15px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:22px;
-  animation:spin 14s linear infinite;
-}
-
-@keyframes spin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
-}
-
 .photo{
   width:150px;
   height:150px;
@@ -101,7 +74,6 @@ h1{
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  box-shadow:0 12px 25px rgba(255,63,129,0.45);
 }
 
 .disc{
@@ -112,17 +84,12 @@ h1{
 }
 
 .playing .disc{
-  animation:rotateDisc 3s linear infinite;
+  animation:spin 3s linear infinite;
 }
 
-@keyframes rotateDisc{
+@keyframes spin{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
-}
-
-.note{
-  font-size:0.85rem;
-  color:#555;
 }
 
 /* SLIDERS */
@@ -140,7 +107,6 @@ h1{
   object-fit:cover;
   border-radius:16px;
   scroll-snap-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 .wish-card{
@@ -149,52 +115,21 @@ h1{
   color:white;
   padding:22px;
   border-radius:20px;
-  font-size:0.95rem;
-  line-height:1.6;
-  text-align:center;
   scroll-snap-align:center;
-  box-shadow:0 12px 30px rgba(0,0,0,0.25);
 }
 
 /* CAKE */
 .cake{
   font-size:4rem;
   cursor:pointer;
-  margin-top:10px;
 }
 
-/* REAL CHERRY BLOSSOM PETALS */
-.petal{
+/* 🌸 SMALL MIXED FLOWERS */
+.flower{
   position:fixed;
   top:-10vh;
-  width:14px;
-  height:14px;
-  background:#ffb7c5;
-  border-radius:60% 40% 60% 40%;
-  transform:rotate(45deg);
-  opacity:0.9;
   animation:fall linear infinite;
-  z-index:0;
-}
-
-.petal::before,
-.petal::after{
-  content:'';
-  position:absolute;
-  width:14px;
-  height:14px;
-  background:#ffb7c5;
-  border-radius:50%;
-}
-
-.petal::before{
-  top:-7px;
-  left:0;
-}
-
-.petal::after{
-  left:-7px;
-  top:0;
+  pointer-events:none;
 }
 
 @keyframes fall{
@@ -211,16 +146,13 @@ h1{
   <div class="card">
     <h1>Happy Birthday 🎂</h1>
 
-    <div class="flower-frame">
-      <img src="her.jpg" class="photo">
-    </div>
+    <img src="her.jpg" class="photo">
 
     <div class="name">RAKHI ఌ</div>
 
     <button id="musicBtn" class="music-btn">
       <div class="disc"></div>
     </button>
-    <div class="note">Tap to play / pause music 🎶</div>
 
     <div class="slider">
       <img src="photo1.jpg">
@@ -229,26 +161,16 @@ h1{
     </div>
 
     <div class="slider">
-      <div class="wish-card">
-        🌸 Dear Rakhi 🌸<br><br>
-        May your heart always bloom with happiness and peace 💖
-      </div>
-      <div class="wish-card">
-        ✨ A Beautiful Future ✨<br><br>
-        May success, love, and smiles follow you always 🌟
-      </div>
-      <div class="wish-card">
-        💕 Stay Amazing 💕<br><br>
-        The world is brighter because of your presence 🌈
-      </div>
+      <div class="wish-card">🌸 May your life bloom with happiness 💖</div>
+      <div class="wish-card">✨ A bright and beautiful future awaits 🌟</div>
+      <div class="wish-card">💕 Always stay the amazing soul you are 🌸</div>
     </div>
 
     <div class="cake" onclick="blow()">🎂🕯️🕯️</div>
-    <div class="note">Tap cake to blow candles 🎉</div>
   </div>
 </div>
 
-<audio id="bgMusic" preload="auto" loop>
+<audio id="bgMusic" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
@@ -257,10 +179,10 @@ const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
 let started = false;
 
-btn.addEventListener("click",()=>{
+btn.onclick = () => {
   if(!started){
     music.play();
-    started=true;
+    started = true;
     btn.classList.add("playing");
   }else{
     if(music.paused){
@@ -271,21 +193,26 @@ btn.addEventListener("click",()=>{
       btn.classList.remove("playing");
     }
   }
-});
+};
 
 function blow(){
-  document.querySelector(".cake").innerText="🎂✨";
   alert("Happy Birthday Rakhi 💖");
 }
 
-for(let i=0;i<35;i++){
-  const p=document.createElement("div");
-  p.className="petal";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=6+Math.random()*6+"s";
-  document.body.appendChild(p);
+/* FLOWERS */
+const flowers = ["🌸","🌼","🌺","💮"];
+for(let i=0;i<45;i++){
+  const f = document.createElement("div");
+  f.className = "flower";
+  f.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+  f.style.left = Math.random()*100 + "vw";
+  f.style.animationDuration = 8 + Math.random()*6 + "s";
+  f.style.fontSize = 14 + Math.random()*8 + "px"; // SMALL
+  f.style.opacity = 0.9;
+  document.body.appendChild(f);
 }
 </script>
 
 </body>
 </html>
+
