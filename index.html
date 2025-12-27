@@ -1,142 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Rakhi 💖</title>
 
-    .container {
-      position: relative;
-      z-index: 2;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3rem;
-      color: #ff4d88;
-      margin-bottom: 10px;
-      animation: pop 1.2s ease-in-out infinite alternate;
-    }
+<style>
+*{box-sizing:border-box}
 
-    h2 {
-      font-weight: 400;
-      color: #555;
-      margin-bottom: 10px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#ffe6f0,#e6f7ff);
+  overflow-x:hidden;
+  overflow-y:auto;
+}
 
-    .music-control {
-      margin-top: 15px;
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: radial-gradient(circle at top left, #ffb6c1, #ff4d88);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255,77,136,0.5);
-    }
+.container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
 
-    .disc {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      background: repeating-radial-gradient(circle, #222 0 4px, #444 4px 8px);
-      animation: spin 3s linear infinite;
-    }
+.card{
+  background:rgba(255,255,255,0.9);
+  border-radius:25px;
+  padding:30px 20px;
+  max-width:420px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
 
-    .paused .disc {
-      animation-play-state: paused;
-    }
+h1{
+  font-family:'Pacifico',cursive;
+  color:#ff4d88;
+  font-size:2.8rem;
+}
 
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+.name{
+  font-family:'Pacifico',cursive;
+  font-size:2.2rem;
+  color:#ff4d88;
+  margin:10px 0;
+  animation:glow 2s infinite alternate;
+}
 
-    .note {
-      margin-top: 8px;
-      font-size: 0.8rem;
-      color: #777;
-    }
+@keyframes glow{
+  from{text-shadow:0 0 5px #ff9acb}
+  to{text-shadow:0 0 20px #ff4d88}
+}
 
-    @keyframes pop {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
-    }
-  </style>
+.flower-frame{
+  position:relative;
+  width:180px;
+  height:180px;
+  margin:15px auto;
+}
+
+.flower-frame::before{
+  content:"🌸🌼🌺🌸🌼🌺";
+  position:absolute;
+  inset:-15px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.photo{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #ff9acb;
+  animation:heartbeat 2s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.07)}
+}
+
+.music-control{
+  margin:15px auto;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:radial-gradient(circle,#ffb6c1,#ff4d88);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,136,0.5);
+}
+
+.disc{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:repeating-radial-gradient(circle,#222 0 4px,#444 4px 8px);
+  animation:rotateDisc 3s linear infinite;
+}
+
+.paused .disc{
+  animation-play-state:paused;
+}
+
+@keyframes rotateDisc{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.slider{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  margin:20px 0;
+}
+
+.slider img{
+  width:120px;
+  height:160px;
+  object-fit:cover;
+  border-radius:15px;
+  scroll-snap-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+.cake{
+  font-size:4rem;
+  cursor:pointer;
+}
+
+.note{
+  font-size:0.85rem;
+  color:#666;
+  margin-top:5px;
+}
+
+.petal{
+  position:fixed;
+  top:-10vh;
+  width:18px;
+  height:18px;
+  background:radial-gradient(circle,#fff,#ffb6c1);
+  border-radius:60% 40%;
+  animation:fall linear infinite;
+  z-index:0;
+}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg)}
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="card">
-      <h1>Happy Birthday 🎂</h1>
-      <h2>To My Special Friend 💖</h2>
-      <div class="flower-frame">
-        <img src="her.jpg" alt="Her Photo" class="photo" />
-      </div>
-      <div class="name">RAKHI ఌ</div>
-      <div class="slider">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-      </div>
-      <div class="cake" onclick="blow()">🎂🕯️🕯️</div>
-      <div class="candle-text">Tap the cake to blow candles 🎈</div>
-      <img src="her.jpg" alt="Her Photo" class="photo" />
-      <p class="message">
-        May your day bloom with happiness 🌸,<br>
-        your heart sparkle with joy ✨,<br>
-        and your life be filled with love, smiles, and beautiful moments.
-        <br><br>
-        Stay cute, stay amazing 💕
-      </p>
-      <div class="music-control" onclick="toggleMusic()">
-        <div class="disc"></div>
-      </div>
-      <div class="note">Tap the disc to play / pause music 🎶</div>
+<div class="container">
+  <div class="card">
+    <h1>Happy Birthday 🎂</h1>
+
+    <div class="flower-frame">
+      <img src="her.jpg" class="photo">
     </div>
+
+    <div class="name">RAKHI ఌ</div>
+
+    <div class="music-control paused" onclick="toggleMusic()">
+      <div class="disc"></div>
+    </div>
+    <div class="note">Tap disc to play / pause music 🎶</div>
+
+    <div class="slider">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+    </div>
+
+    <div class="cake" onclick="blow()">🎂🕯️🕯️</div>
+    <div class="note">Tap cake to blow candles 🎉</div>
   </div>
+</div>
 
-  <audio id="bgMusic" loop autoplay>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
-    const music = document.getElementById('bgMusic');
-    const control = document.querySelector('.music-control');
+<script>
+const music=document.getElementById("bgMusic");
+const control=document.querySelector(".music-control");
 
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        control.classList.remove('paused');
-      } else {
-        music.pause();
-        control.classList.add('paused');
-      }
-    }
+function toggleMusic(){
+  if(music.paused){
+    music.play();
+    control.classList.remove("paused");
+  }else{
+    music.pause();
+    control.classList.add("paused");
+  }
+}
 
-    window.addEventListener('click', () => {
-      music.play().catch(() => {});
-    }, { once: true });
-  </script>
+function blow(){
+  document.querySelector(".cake").innerText="🎂✨";
+  alert("Happy Birthday Rakhi 💖");
+}
+
+window.addEventListener("click",()=>{
+  music.play().catch(()=>{});
+},{once:true});
+
+for(let i=0;i<30;i++){
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  document.body.appendChild(p);
+}
+</script>
 
 </body>
 </html>
