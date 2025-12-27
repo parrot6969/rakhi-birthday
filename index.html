@@ -16,7 +16,6 @@ body{
   font-family:'Poppins',sans-serif;
   background:linear-gradient(135deg,#ffe6f0,#e6f7ff);
   overflow-x:hidden;
-  overflow-y:auto;
 }
 
 .container{
@@ -28,7 +27,7 @@ body{
 }
 
 .card{
-  background:rgba(255,255,255,0.9);
+  background:rgba(255,255,255,0.95);
   border-radius:25px;
   padding:30px 20px;
   max-width:420px;
@@ -93,11 +92,12 @@ h1{
   50%{transform:scale(1.07)}
 }
 
-.music-control{
-  margin:15px auto;
+.music-btn{
+  margin:20px auto 10px;
   width:90px;
   height:90px;
   border-radius:50%;
+  border:none;
   background:radial-gradient(circle,#ffb6c1,#ff4d88);
   display:flex;
   justify-content:center;
@@ -111,16 +111,20 @@ h1{
   height:65px;
   border-radius:50%;
   background:repeating-radial-gradient(circle,#222 0 4px,#444 4px 8px);
-  animation:rotateDisc 3s linear infinite;
 }
 
-.paused .disc{
-  animation-play-state:paused;
+.playing .disc{
+  animation:rotateDisc 3s linear infinite;
 }
 
 @keyframes rotateDisc{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
+}
+
+.note{
+  font-size:0.85rem;
+  color:#666;
 }
 
 .slider{
@@ -143,12 +147,6 @@ h1{
 .cake{
   font-size:4rem;
   cursor:pointer;
-}
-
-.note{
-  font-size:0.85rem;
-  color:#666;
-  margin-top:5px;
 }
 
 .petal{
@@ -180,10 +178,10 @@ h1{
 
     <div class="name">RAKHI ఌ</div>
 
-    <div class="music-control paused" onclick="toggleMusic()">
+    <button id="musicBtn" class="music-btn">
       <div class="disc"></div>
-    </div>
-    <div class="note">Tap disc to play / pause music 🎶</div>
+    </button>
+    <div class="note">Tap disc to start / pause music 🎶</div>
 
     <div class="slider">
       <img src="photo1.jpg">
@@ -196,41 +194,48 @@ h1{
   </div>
 </div>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" preload="auto" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const music = document.getElementById("bgMusic");
-const control = document.querySelector(".music-control");
+const btn = document.getElementById("musicBtn");
 let started = false;
 
-function toggleMusic() {
+btn.addEventListener("click", () => {
   if (!started) {
     music.play().then(() => {
       started = true;
-      control.classList.remove("paused");
+      btn.classList.add("playing");
     }).catch(() => {
       alert("Tap again to start music 🎶");
     });
-    return;
-  }
-
-  if (music.paused) {
-    music.play();
-    control.classList.remove("paused");
   } else {
-    music.pause();
-    control.classList.add("paused");
+    if (music.paused) {
+      music.play();
+      btn.classList.add("playing");
+    } else {
+      music.pause();
+      btn.classList.remove("playing");
+    }
   }
-}
+});
 
-function blow() {
+function blow(){
   document.querySelector(".cake").innerText = "🎂✨";
   alert("Happy Birthday Rakhi 💖");
 }
-</script>
 
+for(let i=0;i<30;i++){
+  const p=document.createElement("div");
+  p.className="petal";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=6+Math.random()*6+"s";
+  document.body.appendChild(p);
+}
+</script>
 
 </body>
 </html>
+
