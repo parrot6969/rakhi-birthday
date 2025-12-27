@@ -13,10 +13,11 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ffe6f0,#e6f7ff);
+  background:linear-gradient(180deg,#ffd1dc,#ffb6c1);
   overflow-x:hidden;
 }
 
+/* MAIN CARD */
 .container{
   min-height:100vh;
   display:flex;
@@ -26,49 +27,26 @@ body{
 }
 
 .card{
-  background:rgba(255,255,255,0.95);
-  border-radius:25px;
+  background:rgba(255,255,255,0.92);
+  border-radius:26px;
   padding:30px 20px;
   max-width:420px;
   width:100%;
   text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
 }
 
 h1{
   font-family:'Pacifico',cursive;
-  color:#ff4d88;
+  color:#ff3f81;
   font-size:2.6rem;
 }
 
 .name{
   font-family:'Pacifico',cursive;
   font-size:2.2rem;
-  color:#ff4d88;
+  color:#ff3f81;
   margin:10px 0;
-}
-
-.flower-frame{
-  position:relative;
-  width:180px;
-  height:180px;
-  margin:15px auto;
-}
-
-.flower-frame::before{
-  content:"🌸🌼🌺🌸🌼🌺";
-  position:absolute;
-  inset:-15px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:22px;
-  animation:spin 12s linear infinite;
-}
-
-@keyframes spin{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
 }
 
 .photo{
@@ -76,108 +54,87 @@ h1{
   height:150px;
   border-radius:50%;
   object-fit:cover;
-  border:4px solid #ff9acb;
-  animation:heartbeat 2s infinite;
-}
-
-@keyframes heartbeat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.07)}
+  border:4px solid #ff8fb3;
+  margin-bottom:10px;
 }
 
 /* MUSIC */
 .music-btn{
-  margin:20px auto 10px;
+  margin:15px auto;
   width:90px;
   height:90px;
   border-radius:50%;
   border:none;
-  background:radial-gradient(circle,#ffb6c1,#ff4d88);
+  background:radial-gradient(circle,#ff9abf,#ff3f81);
   display:flex;
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(255,77,136,0.5);
 }
 
 .disc{
   width:65px;
   height:65px;
   border-radius:50%;
-  background:repeating-radial-gradient(circle,#222 0 4px,#444 4px 8px);
+  background:repeating-radial-gradient(circle,#333 0 4px,#555 4px 8px);
 }
 
 .playing .disc{
-  animation:rotateDisc 3s linear infinite;
+  animation:spin 3s linear infinite;
 }
 
-@keyframes rotateDisc{
+@keyframes spin{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
 
-.note{
-  font-size:0.85rem;
-  color:#666;
-}
-
-/* PHOTO SLIDER */
+/* SLIDERS */
 .slider{
   display:flex;
-  gap:10px;
+  gap:12px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  margin:20px 0;
+  margin:18px 0;
 }
 
 .slider img{
   width:120px;
   height:160px;
   object-fit:cover;
-  border-radius:15px;
+  border-radius:16px;
   scroll-snap-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* WISH SLIDES */
-.wishes{
-  margin-top:10px;
 }
 
 .wish-card{
   min-width:260px;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  color:#fff;
+  background:linear-gradient(135deg,#ff7aa2,#ffb6c1);
+  color:white;
   padding:22px;
   border-radius:20px;
-  font-size:0.95rem;
   line-height:1.6;
-  text-align:center;
   scroll-snap-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 /* CAKE */
 .cake{
   font-size:4rem;
   cursor:pointer;
-  margin-top:10px;
 }
 
-/* PETALS */
-.petal{
+/* 🌸 CONTINUOUS FALLING FLOWERS */
+.flower{
   position:fixed;
   top:-10vh;
-  width:18px;
-  height:18px;
-  background:radial-gradient(circle,#fff,#ffb6c1);
-  border-radius:60% 40%;
-  animation:fall linear infinite;
-  z-index:0;
+  font-size:18px;
+  animation:fall linear forwards;
+  pointer-events:none;
 }
 
 @keyframes fall{
-  to{transform:translateY(120vh) rotate(360deg)}
+  to{
+    transform:translateY(120vh) rotate(360deg);
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -188,85 +145,96 @@ h1{
   <div class="card">
     <h1>Happy Birthday 🎂</h1>
 
-    <div class="flower-frame">
-      <img src="her.jpg" class="photo">
-    </div>
+    <img src="her.jpg" class="photo">
 
     <div class="name">RAKHI ఌ</div>
 
     <button id="musicBtn" class="music-btn">
       <div class="disc"></div>
     </button>
-    <div class="note">Tap to play / pause music 🎶</div>
+    <div style="font-size:0.85rem;color:#555;">Tap to play / pause music 🎶</div>
 
-    <!-- PHOTO SLIDER -->
     <div class="slider">
       <img src="photo1.jpg">
       <img src="photo2.jpg">
       <img src="photo3.jpg">
     </div>
 
-    <!-- WISH SLIDER -->
-    <div class="slider wishes">
+    <div class="slider">
       <div class="wish-card">
         🌸 Dear Rakhi 🌸<br><br>
-        May your life always be filled with happiness, peace, and endless smiles 💖
+        May your life always be filled with<br>
+        happiness, peace,<br>
+        and endless smiles 💖
       </div>
 
       <div class="wish-card">
         ✨ A Bright Future Awaits ✨<br><br>
-        May your dreams come true and success follow you wherever you go 🌟
+        May your dreams come true<br>
+        and success follow you<br>
+        wherever you go 🌟
       </div>
 
       <div class="wish-card">
         💕 Always Believe in Yourself 💕<br><br>
-        You are stronger, kinder, and more amazing than you realize 🌈
+        You are stronger, kinder,<br>
+        and more amazing<br>
+        than you realize 🌈
       </div>
     </div>
 
     <div class="cake" onclick="blow()">🎂🕯️🕯️</div>
-    <div class="note">Tap cake to blow candles 🎉</div>
+    <div style="font-size:0.85rem;color:#555;">Tap cake to blow candles 🎉</div>
   </div>
 </div>
 
-<audio id="bgMusic" preload="auto" loop>
+<audio id="bgMusic" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+/* MUSIC */
 const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
 let started = false;
 
-btn.addEventListener("click", () => {
-  if (!started) {
+btn.onclick = () => {
+  if(!started){
     music.play();
     started = true;
     btn.classList.add("playing");
-  } else {
-    if (music.paused) {
+  }else{
+    if(music.paused){
       music.play();
       btn.classList.add("playing");
-    } else {
+    }else{
       music.pause();
       btn.classList.remove("playing");
     }
   }
-});
+};
 
 function blow(){
   document.querySelector(".cake").innerText="🎂✨";
   alert("Happy Birthday Rakhi 💖");
 }
 
-for(let i=0;i<30;i++){
-  const p=document.createElement("div");
-  p.className="petal";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=6+Math.random()*6+"s";
-  document.body.appendChild(p);
+/* 🌸 CONTINUOUS FLOWER FALL */
+function createFlower(){
+  const f = document.createElement("div");
+  f.className = "flower";
+  f.innerText = "🌸";
+  f.style.left = Math.random()*100 + "vw";
+  f.style.fontSize = 14 + Math.random()*10 + "px";
+  f.style.animationDuration = 8 + Math.random()*6 + "s";
+  document.body.appendChild(f);
+
+  setTimeout(()=>f.remove(),15000);
 }
+
+setInterval(createFlower, 500);
 </script>
 
 </body>
 </html>
+
