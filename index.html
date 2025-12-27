@@ -13,7 +13,11 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ffe6f0,#e6f7ff);
+  background:
+    linear-gradient(180deg, rgba(255,220,235,0.95), rgba(255,182,193,0.95)),
+    url('https://i.imgur.com/8QfYJZy.png');
+  background-size:cover;
+  background-attachment:fixed;
   overflow-x:hidden;
 }
 
@@ -26,25 +30,25 @@ body{
 }
 
 .card{
-  background:rgba(255,255,255,0.95);
-  border-radius:25px;
+  background:rgba(255,255,255,0.9);
+  border-radius:26px;
   padding:30px 20px;
   max-width:420px;
   width:100%;
   text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  box-shadow:0 20px 40px rgba(0,0,0,0.2);
 }
 
 h1{
   font-family:'Pacifico',cursive;
-  color:#ff4d88;
+  color:#ff3f81;
   font-size:2.6rem;
 }
 
 .name{
   font-family:'Pacifico',cursive;
   font-size:2.2rem;
-  color:#ff4d88;
+  color:#ff3f81;
   margin:10px 0;
 }
 
@@ -56,14 +60,14 @@ h1{
 }
 
 .flower-frame::before{
-  content:"🌸🌼🌺🌸🌼🌺";
+  content:"🌸 🌸 🌸 🌸 🌸";
   position:absolute;
   inset:-15px;
   display:flex;
   justify-content:center;
   align-items:center;
   font-size:22px;
-  animation:spin 12s linear infinite;
+  animation:spin 14s linear infinite;
 }
 
 @keyframes spin{
@@ -76,7 +80,7 @@ h1{
   height:150px;
   border-radius:50%;
   object-fit:cover;
-  border:4px solid #ff9acb;
+  border:4px solid #ff8fb3;
   animation:heartbeat 2s infinite;
 }
 
@@ -87,24 +91,24 @@ h1{
 
 /* MUSIC */
 .music-btn{
-  margin:20px auto 10px;
+  margin:18px auto 8px;
   width:90px;
   height:90px;
   border-radius:50%;
   border:none;
-  background:radial-gradient(circle,#ffb6c1,#ff4d88);
+  background:radial-gradient(circle,#ff9abf,#ff3f81);
   display:flex;
   justify-content:center;
   align-items:center;
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(255,77,136,0.5);
+  box-shadow:0 12px 25px rgba(255,63,129,0.45);
 }
 
 .disc{
   width:65px;
   height:65px;
   border-radius:50%;
-  background:repeating-radial-gradient(circle,#222 0 4px,#444 4px 8px);
+  background:repeating-radial-gradient(circle,#333 0 4px,#555 4px 8px);
 }
 
 .playing .disc{
@@ -118,43 +122,38 @@ h1{
 
 .note{
   font-size:0.85rem;
-  color:#666;
+  color:#555;
 }
 
-/* PHOTO SLIDER */
+/* SLIDERS */
 .slider{
   display:flex;
-  gap:10px;
+  gap:12px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
-  margin:20px 0;
+  margin:18px 0;
 }
 
 .slider img{
   width:120px;
   height:160px;
   object-fit:cover;
-  border-radius:15px;
+  border-radius:16px;
   scroll-snap-align:center;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
-/* WISH SLIDES */
-.wishes{
-  margin-top:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 .wish-card{
   min-width:260px;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  color:#fff;
+  background:linear-gradient(135deg,#ff7aa2,#ffb6c1);
+  color:white;
   padding:22px;
   border-radius:20px;
   font-size:0.95rem;
   line-height:1.6;
   text-align:center;
   scroll-snap-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  box-shadow:0 12px 30px rgba(0,0,0,0.25);
 }
 
 /* CAKE */
@@ -164,20 +163,44 @@ h1{
   margin-top:10px;
 }
 
-/* PETALS */
+/* REAL CHERRY BLOSSOM PETALS */
 .petal{
   position:fixed;
   top:-10vh;
-  width:18px;
-  height:18px;
-  background:radial-gradient(circle,#fff,#ffb6c1);
-  border-radius:60% 40%;
+  width:14px;
+  height:14px;
+  background:#ffb7c5;
+  border-radius:60% 40% 60% 40%;
+  transform:rotate(45deg);
+  opacity:0.9;
   animation:fall linear infinite;
   z-index:0;
 }
 
+.petal::before,
+.petal::after{
+  content:'';
+  position:absolute;
+  width:14px;
+  height:14px;
+  background:#ffb7c5;
+  border-radius:50%;
+}
+
+.petal::before{
+  top:-7px;
+  left:0;
+}
+
+.petal::after{
+  left:-7px;
+  top:0;
+}
+
 @keyframes fall{
-  to{transform:translateY(120vh) rotate(360deg)}
+  to{
+    transform:translateY(120vh) rotate(360deg);
+  }
 }
 </style>
 </head>
@@ -199,28 +222,24 @@ h1{
     </button>
     <div class="note">Tap to play / pause music 🎶</div>
 
-    <!-- PHOTO SLIDER -->
     <div class="slider">
       <img src="photo1.jpg">
       <img src="photo2.jpg">
       <img src="photo3.jpg">
     </div>
 
-    <!-- WISH SLIDER -->
-    <div class="slider wishes">
+    <div class="slider">
       <div class="wish-card">
         🌸 Dear Rakhi 🌸<br><br>
-        May your life always be filled with happiness, peace, and endless smiles 💖
+        May your heart always bloom with happiness and peace 💖
       </div>
-
       <div class="wish-card">
-        ✨ A Bright Future Awaits ✨<br><br>
-        May your dreams come true and success follow you wherever you go 🌟
+        ✨ A Beautiful Future ✨<br><br>
+        May success, love, and smiles follow you always 🌟
       </div>
-
       <div class="wish-card">
-        💕 Always Believe in Yourself 💕<br><br>
-        You are stronger, kinder, and more amazing than you realize 🌈
+        💕 Stay Amazing 💕<br><br>
+        The world is brighter because of your presence 🌈
       </div>
     </div>
 
@@ -238,16 +257,16 @@ const music = document.getElementById("bgMusic");
 const btn = document.getElementById("musicBtn");
 let started = false;
 
-btn.addEventListener("click", () => {
-  if (!started) {
+btn.addEventListener("click",()=>{
+  if(!started){
     music.play();
-    started = true;
+    started=true;
     btn.classList.add("playing");
-  } else {
-    if (music.paused) {
+  }else{
+    if(music.paused){
       music.play();
       btn.classList.add("playing");
-    } else {
+    }else{
       music.pause();
       btn.classList.remove("playing");
     }
@@ -259,7 +278,7 @@ function blow(){
   alert("Happy Birthday Rakhi 💖");
 }
 
-for(let i=0;i<30;i++){
+for(let i=0;i<35;i++){
   const p=document.createElement("div");
   p.className="petal";
   p.style.left=Math.random()*100+"vw";
