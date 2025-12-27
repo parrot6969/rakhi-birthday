@@ -201,36 +201,36 @@ h1{
 </audio>
 
 <script>
-const music=document.getElementById("bgMusic");
-const control=document.querySelector(".music-control");
+const music = document.getElementById("bgMusic");
+const control = document.querySelector(".music-control");
+let started = false;
 
-function toggleMusic(){
-  if(music.paused){
+function toggleMusic() {
+  if (!started) {
+    music.play().then(() => {
+      started = true;
+      control.classList.remove("paused");
+    }).catch(() => {
+      alert("Tap again to start music 🎶");
+    });
+    return;
+  }
+
+  if (music.paused) {
     music.play();
     control.classList.remove("paused");
-  }else{
+  } else {
     music.pause();
     control.classList.add("paused");
   }
 }
 
-function blow(){
-  document.querySelector(".cake").innerText="🎂✨";
+function blow() {
+  document.querySelector(".cake").innerText = "🎂✨";
   alert("Happy Birthday Rakhi 💖");
 }
-
-window.addEventListener("click",()=>{
-  music.play().catch(()=>{});
-},{once:true});
-
-for(let i=0;i<30;i++){
-  const p=document.createElement("div");
-  p.className="petal";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=6+Math.random()*6+"s";
-  document.body.appendChild(p);
-}
 </script>
+
 
 </body>
 </html>
